@@ -1,16 +1,26 @@
 .zubereitung {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+  margin: 0 20px;
 }
 
 .zubereitung__text {
-  font-weight: 600;
   margin: 0;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .zubereitung__balken {
-  height: 12px;
+  flex: 1;
+  min-width: 60px;
+  height: 10px;
   border-radius: 999px;
   background: var(--surface-2);
   overflow: hidden;
@@ -23,7 +33,8 @@
 }
 
 .zubereitung__prozent {
-  align-self: flex-end;
+  min-width: 34px;
+  text-align: right;
   color: var(--text-muted);
   font-size: 0.85rem;
 }

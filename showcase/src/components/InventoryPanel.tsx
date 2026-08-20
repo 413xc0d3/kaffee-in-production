@@ -1,11 +1,17 @@
 import { INVENTORY_LABEL, INVENTORY_MAX, INVENTORY_UNIT, WARN_RATIO } from '../data/config';
 import type { BaristaAction, BaristaState } from '../logic/baristaReducer';
 import type { InventoryType } from '../types';
+import wasserImg from '../assets/drinks/wasser.png';
+import kaffeeImg from '../assets/drinks/kaffee.png';
+import milchImg from '../assets/drinks/milch.png';
 import zuckerImg from '../assets/drinks/zucker.png';
 import sirupImg from '../assets/drinks/sirup.png';
 import './InventoryPanel.css';
 
 const INVENTORY_ICON: Partial<Record<InventoryType, string>> = {
+  wasser: wasserImg,
+  kaffee: kaffeeImg,
+  milch: milchImg,
   zucker: zuckerImg,
   sirup: sirupImg,
 };

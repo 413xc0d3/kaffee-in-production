@@ -12,7 +12,7 @@ export function ZubereitungsAnzeige({ state }: Props) {
   const drink = getDrink(state.activeOrder.drink);
 
   return (
-    <section className="zubereitung" role="status">
+    <div className="zubereitung" role="status">
       <p className="zubereitung__text">
         Bereite {drink.name} ({state.activeOrder.size}) zu …
       </p>
@@ -20,6 +20,6 @@ export function ZubereitungsAnzeige({ state }: Props) {
         <div className="zubereitung__fortschritt" style={{ width: `${state.progress}%` }} />
       </div>
       <span className="zubereitung__prozent">{state.progress}%</span>
-    </section>
+    </div>
   );
 }

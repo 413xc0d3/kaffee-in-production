@@ -5,6 +5,7 @@ import type { BaristaAction, BaristaState } from '../logic/baristaReducer';
 import type { ExtraType, Size } from '../types';
 import { BESTELLUNG_GESPERRT_HINWEIS } from '../utils/statusMeta';
 import { DrinkArt } from './DrinkArt';
+import { ZubereitungsAnzeige } from './ZubereitungsAnzeige';
 import sirupImg from '../assets/drinks/sirup.png';
 import zuckerImg from '../assets/drinks/zucker.png';
 import './DrinkSelector.css';
@@ -97,6 +98,7 @@ export function DrinkSelector({ state, dispatch }: Props) {
 
       <div className="drink-selector__fuss">
         <span className="drink-selector__preis">{formatCents(previewCents)}</span>
+        <ZubereitungsAnzeige state={state} />
         <button
           type="button"
           className="drink-selector__bestellen"

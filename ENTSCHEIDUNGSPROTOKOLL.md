@@ -419,3 +419,37 @@ Nachträglich dokumentiert (Umsetzung erfolgte direkt im Code, ohne vorherige Op
 **Begründung:** Rein gestalterische Auflockerung des ersten lauffähigen Standes, keine funktionale Änderung; Farben weiterhin über CSS-Variablen gepflegt, damit Light/Dark-Mode konsistent bleiben.
 
 **Hinweis:** Alle drei Punkte sind reine UI-Änderungen ohne Auswirkung auf Zustandsmaschine, Preisberechnung oder Vorratslogik – bestehende Testfälle aus Runde 1–7 bleiben unverändert gültig.
+
+## Runde 10 – Layout-Iteration nach Live-Test der ersten Version
+
+Wie Runde 9 nachträglich dokumentiert: Umsetzung erfolgte direkt im Code anhand konkreter Rückmeldungen beim Testen der laufenden Anwendung im Browser, nicht als vorab diskutierte Optionsauswahl.
+
+### 1. Vorrats-Icons vervollständigt
+
+**Entscheidung:** Die bisher fehlenden Icons für Wasser, Kaffee und Milch (`wasser.png`, `kaffee.png`, `milch.png`) wurden ergänzt und im `InventoryPanel` genauso eingebunden wie die bereits vorhandenen Sirup-/Zucker-Icons. Damit hat jede der 5 Vorratsarten ein Bild.
+
+### 2. Grundlayout neu geordnet
+
+**Entscheidung:** Die Getränkeauswahl (`DrinkSelector`) liegt jetzt auf voller Breite direkt unter dem Header (vorher: linke Spalte einer Zweispalten-Ansicht). Ihre Innenelemente (Getränke-Buttons, Vorschaubild, Größen-/Extras-Buttons, Preis/Bestellen) wurden entsprechend hochskaliert, um die gewonnene Breite sinnvoll zu nutzen. Vorrat und Tagesüberblick stehen darunter nebeneinander in einer zweispaltigen Reihe (Container-Breite dafür von 1100px auf 1280px erweitert). Auf schmalen Bildschirmen (< 760px) stapeln sich Vorrat/Tagesüberblick weiterhin untereinander.
+
+**Begründung:** Rein gestalterische Neugewichtung – die Getränkeauswahl ist die primäre Interaktion und bekommt entsprechend mehr Raum; Vorrat/Tagesüberblick sind nachgelagerte Infoflächen.
+
+### 3. Bündige Ausrichtung der Auswahl-Elemente
+
+**Entscheidung:** Getränke-Buttons, Größen-Buttons (S/M/L) und die Sirup-/Zucker-Buttons sind jetzt alle einheitlich 64px hoch. Das Getränke-Grid nutzt `auto-fit` statt `auto-fill`, damit keine unsichtbare leere Spalte mehr Platz wegnimmt und die 5 Buttons bündig bis zum rechten Rand reichen (bündig mit Größe/Extras darunter). Die Extras (Sirup/Zucker) stehen jetzt untereinander statt nebeneinander, jeweils über die volle verfügbare Breite. Das Getränke-Vorschaubild wurde minimal gekürzt (158px → 144px Höhe, per `object-fit: cover` zugeschnitten statt verzerrt), damit sein unterer Rand exakt mit dem unteren Rand des Zucker-Buttons abschließt.
+
+**Begründung:** Rein optische Aufräumarbeit auf ausdrücklichen Wunsch, damit die Fläche aufgeräumter wirkt und der verfügbare Platz besser genutzt wird; keine funktionale Änderung. Der Bildzuschnitt betrifft alle 5 Getränkebilder gleichermaßen (alle im Ausgangsformat 700×700px quadratisch), daher kein ungleichmäßiger Effekt zwischen den Getränken.
+
+### 4. Ein/Aus-Bedienung aus dem Header gelöst
+
+**Entscheidung:** Der Header (`StatusBar`) zeigt nur noch das zentrierte Status-Badge (Aus/Aufheizen/Bereit/Zubereitung/Fehler), keinen Button mehr. Der Ein-/Ausschalt-Button wurde in eine neue, eigenständige Komponente `PowerButton` ausgelagert und erscheint jetzt groß unterhalb des Tagesüberblicks. Die Statusfarbe für "Aus" wurde von neutral/beige auf Rot umgestellt (analog zur bisherigen Grünfärbung von "Bereit"), in Hell- und Dunkelmodus jeweils eigene Werte in `index.css`.
+
+**Begründung:** Klarere Trennung zwischen reiner Statusanzeige (Header) und Bedienelement (Power-Button); Rot für "Aus" macht den Maschinenzustand auf einen Blick erkennbar, ohne den Label-Text lesen zu müssen.
+
+### 5. Zubereitungsanzeige in die Fußzeile der Getränkeauswahl verschoben
+
+**Entscheidung:** Die während der Zubereitung sichtbare Fortschrittsanzeige (`ZubereitungsAnzeige`) ist keine eigenständige Karte mehr unterhalb der Getränkeauswahl, sondern sitzt jetzt in der Fußzeile des `DrinkSelector`, zwischen Preisanzeige und Bestellen-Button (füllt dort den verfügbaren Platz als kompakte horizontale Leiste mit Text, Fortschrittsbalken und Prozentwert). Auf schmalen Bildschirmen (< 640px) rutscht sie in eine eigene volle Zeile unterhalb von Preis/Button.
+
+**Begründung:** Räumliche Nähe zur Bestellung, an der sie inhaltlich hängt, statt als separater Block weiter unten auf der Seite.
+
+**Hinweis:** Alle fünf Punkte sind reine UI-/Layout-Änderungen ohne Auswirkung auf Zustandsmaschine, Preisberechnung oder Vorratslogik – bestehende Testfälle aus Runde 1–7 bleiben unverändert gültig.

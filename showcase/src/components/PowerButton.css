@@ -1,0 +1,16 @@
+.power-button {
+  width: 100%;
+  padding: 22px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: var(--accent-contrast);
+  border-color: var(--accent);
+  box-shadow: var(--shadow);
+}
+
+.power-button:hover:not(:disabled) {
+  background: var(--accent-strong);
+  border-color: var(--accent-strong);
+}

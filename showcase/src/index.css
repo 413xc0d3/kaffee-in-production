@@ -12,8 +12,8 @@
   --radius: 12px;
   --shadow: 0 2px 8px rgba(44, 33, 26, 0.08), 0 8px 24px rgba(44, 33, 26, 0.06);
 
-  --status-aus-bg: #e5e0da;
-  --status-aus-fg: #5b5248;
+  --status-aus-bg: #f8d6d3;
+  --status-aus-fg: #9c2b22;
   --status-aufheizen-bg: #fde7c7;
   --status-aufheizen-fg: #8a5a00;
   --status-bereit-bg: #d9f0df;
@@ -41,8 +41,8 @@
     --accent-contrast: #20160c;
     --shadow: 0 2px 8px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.3);
 
-    --status-aus-bg: #3a352c;
-    --status-aus-fg: #cfc6b8;
+    --status-aus-bg: #4a2422;
+    --status-aus-fg: #ff9086;
     --status-aufheizen-bg: #4a3a12;
     --status-aufheizen-fg: #ffcf7a;
     --status-bereit-bg: #173a25;

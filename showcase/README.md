@@ -6,14 +6,18 @@ Die fachliche Grundlage (Zustandsmaschine, 5 Getränke × 5 Vorratsarten, Preisb
 
 ## Warum React/TS/Vite statt Vanilla?
 
-Siehe [`../ENTSCHEIDUNGSPROTOKOLL.md`](../ENTSCHEIDUNGSPROTOKOLL.md) für die vollständige Begründung aller fachlichen und technischen Entscheidungen (inkl. UI-Feinschliff wie `DrinkArt`-Vorschaubilder, Extras-Buttons, StatusBar-Redesign).
+Siehe [`../ENTSCHEIDUNGSPROTOKOLL.md`](../ENTSCHEIDUNGSPROTOKOLL.md) für die vollständige Begründung aller fachlichen und technischen Entscheidungen (inkl. UI-Feinschliff wie `DrinkArt`-Vorschaubilder, Extras-Buttons, StatusBar-Redesign, Layout-Iteration in Runde 10).
 
 Offene Grenzfälle und Testideen: [`GRENZFAELLE_UND_TESTIDEEN.md`](./GRENZFAELLE_UND_TESTIDEEN.md).
 
 ## Projektstruktur
 
-- `src/components/` – UI-Komponenten (`StatusBar`, `DrinkSelector`, `DrinkArt`, `InventoryPanel`, …)
+- `src/components/` – UI-Komponenten (`StatusBar`, `PowerButton`, `DrinkSelector`, `DrinkArt`, `ZubereitungsAnzeige`, `InventoryPanel`, `DayOverviewPanel`, `HinweiseListe`, …)
 - `src/assets/` – Bildmaterial (Logo, Kaffeebohnen-Hintergrund, Getränke-/Zutaten-Icons als PNG)
+
+## Layout (Stand Runde 10)
+
+Getränkeauswahl auf voller Breite direkt unter dem Header; Vorrat und Tagesüberblick darunter nebeneinander (auf schmalen Bildschirmen untereinander gestapelt). Der Ein-/Ausschalten-Button sitzt groß unterhalb des Tagesüberblicks; der Header zeigt nur noch den zentrierten Status ("Aus" rot, "Bereit" grün hinterlegt). Die Zubereitungsanzeige erscheint während einer laufenden Zubereitung in der Fußzeile der Getränkeauswahl, zwischen Preis und Bestellen-Button.
 
 ## Entwicklung starten
 
