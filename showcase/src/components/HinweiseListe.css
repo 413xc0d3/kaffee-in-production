@@ -1,0 +1,45 @@
+.hinweise-liste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.hinweise-liste__eintrag {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.hinweise-liste__eintrag--info {
+  background: var(--status-aufheizen-bg);
+  color: var(--status-aufheizen-fg);
+}
+
+.hinweise-liste__eintrag--fehler {
+  background: var(--status-fehler-bg);
+  color: var(--status-fehler-fg);
+}
+
+.hinweise-liste__eintrag button {
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-size: 1.1rem;
+  line-height: 1;
+  padding: 0 4px;
+}
+
+.hinweise-liste__eintrag button:hover {
+  background: transparent;
+  opacity: 0.7;
+}

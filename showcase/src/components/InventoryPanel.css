@@ -1,0 +1,57 @@
+.inventory-panel__liste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.inventory-panel__eintrag {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.inventory-panel__kopf {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.92rem;
+}
+
+.inventory-panel__wert--niedrig {
+  color: var(--status-aufheizen-fg);
+  font-weight: 600;
+}
+
+.inventory-panel__wert--leer {
+  color: var(--status-fehler-fg);
+  font-weight: 700;
+}
+
+.inventory-panel__balken {
+  height: 10px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  overflow: hidden;
+}
+
+.inventory-panel__fuellstand {
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.2s ease;
+}
+
+.inventory-panel__fuellstand--niedrig {
+  background: #e0a530;
+}
+
+.inventory-panel__fuellstand--leer {
+  background: var(--status-fehler-fg);
+}
+
+.inventory-panel__eintrag button {
+  align-self: flex-start;
+  padding: 5px 12px;
+  font-size: 0.85rem;
+}

@@ -1,0 +1,101 @@
+:root {
+  --bg: #f7f3ee;
+  --surface: #ffffff;
+  --surface-2: #efe6db;
+  --border: #ddd0c0;
+  --text: #2c211a;
+  --text-muted: #6b5c4f;
+  --accent: #6f4e37;
+  --accent-strong: #4a3222;
+  --accent-contrast: #ffffff;
+  --radius: 12px;
+  --shadow: 0 2px 8px rgba(44, 33, 26, 0.08), 0 8px 24px rgba(44, 33, 26, 0.06);
+
+  --status-aus-bg: #e5e0da;
+  --status-aus-fg: #5b5248;
+  --status-aufheizen-bg: #fde7c7;
+  --status-aufheizen-fg: #8a5a00;
+  --status-bereit-bg: #d9f0df;
+  --status-bereit-fg: #1f7a3d;
+  --status-zubereitung-bg: #dce8fb;
+  --status-zubereitung-fg: #1d4f9c;
+  --status-fehler-bg: #fbdcdc;
+  --status-fehler-fg: #a3241f;
+
+  color-scheme: light dark;
+  font: 16px/1.5 system-ui, 'Segoe UI', Roboto, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1b1712;
+    --surface: #252019;
+    --surface-2: #2f281f;
+    --border: #463a2c;
+    --text: #f1e9df;
+    --text-muted: #bfa892;
+    --accent: #c9a479;
+    --accent-strong: #e4c9a0;
+    --accent-contrast: #20160c;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.3);
+
+    --status-aus-bg: #3a352c;
+    --status-aus-fg: #cfc6b8;
+    --status-aufheizen-bg: #4a3a12;
+    --status-aufheizen-fg: #ffcf7a;
+    --status-bereit-bg: #173a25;
+    --status-bereit-fg: #7fe3a4;
+    --status-zubereitung-bg: #17284a;
+    --status-zubereitung-fg: #8cb4f5;
+    --status-fehler-bg: #4a1c1c;
+    --status-fehler-fg: #ff9d94;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+h1,
+h2 {
+  color: var(--text);
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-2);
+  color: var(--text);
+  padding: 8px 14px;
+  transition: background 0.15s ease, opacity 0.15s ease;
+}
+
+button:hover:not(:disabled) {
+  background: var(--border);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+}
+
+section h2 {
+  margin: 0 0 14px;
+  font-size: 1.15rem;
+}

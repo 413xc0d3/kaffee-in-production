@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barista 2026</title>
+    <link rel="stylesheet" href="barista.css">
+    <style>
+        h1{
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>Barista-Automat 2026</h1>
+    <p id="display">Status: Aus</p>
+
+    <!-- Event-Zuweisung über JS -> Selektion -->
+    <button id="btnHeizen">Aufheizen</button>
+    <br><br>
+    <!-- Event-Zuweisung im HTML -->
+    <!-- switch - prüfen, welches Getränk gewählt wurde-->
+    <button onclick="auswahl('Espresso')">Espresso</button>
+    <button onclick="auswahl('Latte')">Latte</button>
+    <br><br>
+       <!-- Event-Zuweisung über JS -> Selektion -->
+    <button id="btnStart" disabled>Start</button>
+
+    
+    
+    <script src="barista.js"></script>
+    
+</body>
+</html>

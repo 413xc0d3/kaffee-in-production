@@ -1,0 +1,73 @@
+.status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 16px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.status-bar__titel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.status-bar__titel h1 {
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+.status-bar__symbol {
+  font-size: 1.6rem;
+}
+
+.status-bar__rechts {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.status-bar__badge {
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.status-bar__badge--aus {
+  background: var(--status-aus-bg);
+  color: var(--status-aus-fg);
+}
+.status-bar__badge--aufheizen {
+  background: var(--status-aufheizen-bg);
+  color: var(--status-aufheizen-fg);
+}
+.status-bar__badge--bereit {
+  background: var(--status-bereit-bg);
+  color: var(--status-bereit-fg);
+}
+.status-bar__badge--zubereitung {
+  background: var(--status-zubereitung-bg);
+  color: var(--status-zubereitung-fg);
+}
+.status-bar__badge--fehler {
+  background: var(--status-fehler-bg);
+  color: var(--status-fehler-fg);
+}
+
+.status-bar__power {
+  background: var(--accent);
+  color: var(--accent-contrast);
+  border-color: var(--accent);
+  font-weight: 600;
+}
+
+.status-bar__power:hover:not(:disabled) {
+  background: var(--accent-strong);
+  border-color: var(--accent-strong);
+}
