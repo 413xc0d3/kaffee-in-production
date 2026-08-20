@@ -1,12 +1,39 @@
 # kaffee-in-production ☕
 
-> Arbeitstitel — Name wird vor Veröffentlichung final bestätigt.
+![Screenshot der Showcase-App](./docs/screenshot.png)
 
 Ein kleiner Barista-Automat als zwei Versionen: einmal aus dem Unterricht, einmal als
 Weiterführung, bei der ich als Product Owner mit [Claude](https://claude.ai) als Entwickler
 zusammengearbeitet habe. Der eigentliche Showcase hier ist weniger die App selbst als der
 **Prozess dahinter** — wie ich Anforderungen formuliert, Entscheidungen getroffen, getestet und
 KI als Entwicklungswerkzeug gezielt eingesetzt habe.
+
+## Warum dieses Projekt?
+
+Die `unterrichtsversion/` ist im FIAE-Unterricht entstanden. Statt sie einfach so stehen zu
+lassen, wollte ich sie außerhalb des Unterrichts als eigenes kleines Projekt weiterdenken — mit
+zwei konkreten Zielen: erstens bewusst mit Technologien arbeiten, die ich vorher noch nicht
+genutzt hatte (React, TypeScript, Vite), und zweitens gezielt üben, wie man mit einem
+KI-Tool wie Claude als Entwicklungswerkzeug zusammenarbeitet, statt es nur mal ausprobiert zu
+haben. Die App selbst ist bewusst überschaubar geblieben — der Punkt war nicht "möglichst viel
+Software", sondern der Umgang mit Anforderungen, Entscheidungen und KI-Zusammenarbeit an einem
+kleinen, gut überschaubaren Beispiel.
+
+## Mein Vorgehen
+
+Die Zusammenarbeit lief rundenbasiert: Für jede Produktentscheidung (Getränkeauswahl,
+Größensystem, Zustände, Fehlerverhalten, Layout, ...) hat Claude mir 2–4 realistische Optionen
+mit Vor-/Nachteilen vorgeschlagen. Ich habe entschieden und begründet, das Ergebnis wurde
+protokolliert, danach erst umgesetzt — nicht andersherum. Nach der Umsetzung wurde getestet,
+Grenzfälle wurden gesammelt, und aufgetretene Probleme (z. B. dass der Fehler-Zustand ursprünglich
+die ganze Maschine statt nur betroffene Getränke sperrte) flossen als neue Entscheidungsrunde
+zurück in den Prozess. Nachlesbar in [`ENTSCHEIDUNGSPROTOKOLL.md`](./ENTSCHEIDUNGSPROTOKOLL.md).
+
+## Was ich dabei gelernt habe
+
+> *[Platzhalter — hier ergänze ich in eigenen Worten, was mir beim Arbeiten mit Claude
+> aufgefallen ist: was überraschend war, was schwierig war, was ich beim nächsten Projekt
+> anders machen würde.]*
 
 ## Ehrlich gesagt: wer hat was gemacht?
 
