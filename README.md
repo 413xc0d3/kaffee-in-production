@@ -2,6 +2,8 @@
 
 ![Screenshot der Showcase-App](./docs/screenshot.png)
 
+**[Live-Demo öffnen](https://413xc0d3.github.io/kaffee-in-production/)**
+
 Ein kleiner Barista-Automat als zwei Versionen: einmal aus dem Unterricht, einmal als
 Weiterführung, bei der ich als Product Owner mit [Claude](https://claude.ai) als Entwickler
 zusammengearbeitet habe. Der eigentliche Showcase hier ist weniger die App selbst als der
