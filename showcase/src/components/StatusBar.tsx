@@ -1,5 +1,6 @@
 import type { BaristaAction, BaristaState } from '../logic/baristaReducer';
 import { STATUS_LABEL } from '../utils/statusMeta';
+import logoImg from '../assets/barista-automat-logo.png';
 import './StatusBar.css';
 
 interface Props {
@@ -13,13 +14,12 @@ export function StatusBar({ state, dispatch }: Props) {
 
   return (
     <header className="status-bar">
-      <div className="status-bar__titel">
-        <span className="status-bar__symbol" aria-hidden="true">
-          ☕
-        </span>
-        <h1>Barista-Automat</h1>
+      <div className="status-bar__hero">
+        <h1>
+          <img className="status-bar__logo" src={logoImg} alt="Barista-Automat" />
+        </h1>
       </div>
-      <div className="status-bar__rechts">
+      <div className="status-bar__controls">
         <span className={`status-bar__badge status-bar__badge--${state.status}`}>
           {STATUS_LABEL[state.status]}
         </span>

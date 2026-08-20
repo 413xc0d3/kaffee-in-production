@@ -1,7 +1,14 @@
 import { INVENTORY_LABEL, INVENTORY_MAX, INVENTORY_UNIT, WARN_RATIO } from '../data/config';
 import type { BaristaAction, BaristaState } from '../logic/baristaReducer';
 import type { InventoryType } from '../types';
+import zuckerImg from '../assets/drinks/zucker.png';
+import sirupImg from '../assets/drinks/sirup.png';
 import './InventoryPanel.css';
+
+const INVENTORY_ICON: Partial<Record<InventoryType, string>> = {
+  zucker: zuckerImg,
+  sirup: sirupImg,
+};
 
 interface Props {
   state: BaristaState;
@@ -26,7 +33,12 @@ export function InventoryPanel({ state, dispatch }: Props) {
           return (
             <li key={typ} className="inventory-panel__eintrag">
               <div className="inventory-panel__kopf">
-                <span>{INVENTORY_LABEL[typ]}</span>
+                <span className="inventory-panel__label">
+                  {INVENTORY_ICON[typ] && (
+                    <img className="inventory-panel__icon" src={INVENTORY_ICON[typ]} alt="" aria-hidden="true" />
+                  )}
+                  {INVENTORY_LABEL[typ]}
+                </span>
                 <span className={leer ? 'inventory-panel__wert--leer' : niedrig ? 'inventory-panel__wert--niedrig' : ''}>
                   {wert} / {max} {INVENTORY_UNIT[typ]}
                 </span>

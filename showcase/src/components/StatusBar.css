@@ -1,35 +1,47 @@
 .status-bar {
+  position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
-  padding: 16px 20px;
-  background: var(--surface);
-  border: 1px solid var(--border);
+  gap: 16px;
+  padding: 32px 20px 24px;
+  background:
+    linear-gradient(135deg, rgba(74, 47, 28, 0.82) 0%, rgba(32, 18, 9, 0.82) 100%),
+    url('../assets/coffee-beans-header.jpg');
+  background-size: cover, cover;
+  background-position: center, center;
+  border: 1px solid var(--accent-strong);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+  overflow: hidden;
 }
 
-.status-bar__titel {
+.status-bar__hero {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
+  text-align: center;
 }
 
-.status-bar__titel h1 {
-  font-size: 1.4rem;
+.status-bar__hero h1 {
   margin: 0;
+  line-height: 0;
 }
 
-.status-bar__symbol {
-  font-size: 1.6rem;
+.status-bar__logo {
+  display: block;
+  width: min(420px, 80vw);
+  height: auto;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
 }
 
-.status-bar__rechts {
+.status-bar__controls {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .status-bar__badge {
@@ -61,13 +73,12 @@
 }
 
 .status-bar__power {
-  background: var(--accent);
-  color: var(--accent-contrast);
-  border-color: var(--accent);
+  background: var(--surface);
+  color: var(--accent-strong);
+  border-color: transparent;
   font-weight: 600;
 }
 
 .status-bar__power:hover:not(:disabled) {
-  background: var(--accent-strong);
-  border-color: var(--accent-strong);
+  background: var(--surface-2);
 }

@@ -1,19 +1,45 @@
-# React + TypeScript + Vite
+# Barista-Automat – Showcase (React + TypeScript + Vite)
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Dies ist die "Vollgas"-Variante des Barista-Automat-Projekts: eine React/TypeScript/Vite-Umsetzung, die bewusst über die einfache `unterrichtsversion` (Vanilla JS) hinausgeht, um aktuelle Marktkompetenz (Komponenten, Hooks, Typsystem) zu zeigen.
 
-Currently, two official plugins are available:
+Die fachliche Grundlage (Zustandsmaschine, 5 Getränke × 5 Vorratsarten, Preisberechnung, Fehlerlogik) ist identisch zur `unterrichtsversion` im Projekt-Root – nur die technische Umsetzung unterscheidet sich.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Warum React/TS/Vite statt Vanilla?
 
-## React Compiler
+Siehe [`../ENTSCHEIDUNGSPROTOKOLL.md`](../ENTSCHEIDUNGSPROTOKOLL.md) für die vollständige Begründung aller fachlichen und technischen Entscheidungen (inkl. UI-Feinschliff wie `DrinkArt`-Vorschaubilder, Extras-Buttons, StatusBar-Redesign).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Offene Grenzfälle und Testideen: [`GRENZFAELLE_UND_TESTIDEEN.md`](./GRENZFAELLE_UND_TESTIDEEN.md).
 
-## Expanding the Oxlint configuration
+## Projektstruktur
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+- `src/components/` – UI-Komponenten (`StatusBar`, `DrinkSelector`, `DrinkArt`, `InventoryPanel`, …)
+- `src/assets/` – Bildmaterial (Logo, Kaffeebohnen-Hintergrund, Getränke-/Zutaten-Icons als PNG)
+
+## Entwicklung starten
+
+```bash
+npm install
+npm run dev
+```
+
+---
+
+## Vite-Template-Hinweise
+
+Dieses Projekt basiert auf dem React + TypeScript + Vite Starter-Template mit HMR und Oxlint-Regeln.
+
+Offiziell verfügbare Plugins:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) nutzt [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) nutzt [SWC](https://swc.rs/)
+
+### React Compiler
+
+Der React Compiler ist in diesem Template wegen der Auswirkung auf Dev-/Build-Performance nicht aktiviert. Siehe [Dokumentation](https://react.dev/learn/react-compiler/installation) zur Aktivierung.
+
+### Oxlint-Konfiguration erweitern
+
+Für produktive Anwendungen empfiehlt sich typsicheres Linting via `oxlint-tsgolint` und `.oxlintrc.json`:
 
 ```json
 {
@@ -29,4 +55,4 @@ If you are developing a production application, we recommend enabling type-aware
 }
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Siehe [Oxlint-Regeldokumentation](https://oxc.rs/docs/guide/usage/linter/rules) für die vollständige Liste.

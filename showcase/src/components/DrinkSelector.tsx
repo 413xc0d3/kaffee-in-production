@@ -1,9 +1,12 @@
 import { DRINKS, getDrink } from '../data/drinks';
-import { EXTRA_LABEL } from '../data/config';
+import { EXTRA_LABEL, EXTRA_PRICE_CENTS } from '../data/config';
 import { calculatePriceCents, formatCents } from '../logic/pricing';
 import type { BaristaAction, BaristaState } from '../logic/baristaReducer';
 import type { ExtraType, Size } from '../types';
 import { BESTELLUNG_GESPERRT_HINWEIS } from '../utils/statusMeta';
+import { DrinkArt } from './DrinkArt';
+import sirupImg from '../assets/drinks/sirup.png';
+import zuckerImg from '../assets/drinks/zucker.png';
 import './DrinkSelector.css';
 
 interface Props {
@@ -13,6 +16,10 @@ interface Props {
 
 const SIZES: Size[] = ['S', 'M', 'L'];
 const EXTRAS: ExtraType[] = ['sirup', 'zucker'];
+const EXTRA_IMAGE: Record<ExtraType, string> = {
+  sirup: sirupImg,
+  zucker: zuckerImg,
+};
 
 export function DrinkSelector({ state, dispatch }: Props) {
   const gesperrt = state.status !== 'bereit';
@@ -42,37 +49,49 @@ export function DrinkSelector({ state, dispatch }: Props) {
         ))}
       </div>
 
-      <div className="drink-selector__reihe">
-        <span className="drink-selector__label">Größe</span>
-        <div className="drink-selector__groessen">
-          {SIZES.map((s) => (
-            <button
-              key={s}
-              type="button"
-              disabled={gesperrt}
-              className={`drink-selector__groesse${s === size ? ' drink-selector__groesse--aktiv' : ''}`}
-              onClick={() => dispatch({ type: 'WAEHLE_GROESSE', size: s })}
-            >
-              {s}
-            </button>
-          ))}
-        </div>
-      </div>
+      <div className="drink-selector__mitte">
+        <div className="drink-selector__optionen">
+          <div className="drink-selector__reihe">
+            <span className="drink-selector__label">Größe</span>
+            <div className="drink-selector__groessen">
+              {SIZES.map((s) => (
+                <button
+                  key={s}
+                  type="button"
+                  disabled={gesperrt}
+                  className={`drink-selector__groesse${s === size ? ' drink-selector__groesse--aktiv' : ''}`}
+                  onClick={() => dispatch({ type: 'WAEHLE_GROESSE', size: s })}
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
+          </div>
 
-      <div className="drink-selector__reihe">
-        <span className="drink-selector__label">Extras</span>
-        <div className="drink-selector__extras">
-          {EXTRAS.map((extra) => (
-            <label key={extra} className="drink-selector__extra">
-              <input
-                type="checkbox"
-                disabled={gesperrt}
-                checked={extras.includes(extra)}
-                onChange={() => dispatch({ type: 'TOGGLE_EXTRA', extra })}
-              />
-              {EXTRA_LABEL[extra]}
-            </label>
-          ))}
+          <div className="drink-selector__reihe">
+            <span className="drink-selector__label">Extras</span>
+            <div className="drink-selector__extras">
+              {EXTRAS.map((extra) => (
+                <button
+                  key={extra}
+                  type="button"
+                  disabled={gesperrt}
+                  aria-pressed={extras.includes(extra)}
+                  className={`drink-selector__extra${extras.includes(extra) ? ' drink-selector__extra--aktiv' : ''}`}
+                  onClick={() => dispatch({ type: 'TOGGLE_EXTRA', extra })}
+                >
+                  <img className="drink-selector__extra-bild" src={EXTRA_IMAGE[extra]} alt="" aria-hidden="true" />
+                  {EXTRA_LABEL[extra]}
+                  <span className="drink-selector__extra-preis">+{formatCents(EXTRA_PRICE_CENTS)}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="drink-selector__vorschau">
+          <DrinkArt drinkId={drinkId} />
+          <span className="drink-selector__vorschau-name">{drink.name}</span>
         </div>
       </div>
 

@@ -391,3 +391,31 @@ Größenaufschlag: S = −0,30 €, L = +0,40 €. Sirup/Zucker-Aufpreis: fester
 **Entscheidung:** React + TypeScript + Vite.
 
 **Begründung:** Der Nutzer möchte bewusst ein "Vollgas"-Showcase, das aktuelle Marktkompetenz zeigt (Komponenten, Hooks, Typsystem) statt sich nur an der unterrichtsversion zu orientieren. Der Funktionsumfang (4 Maschinenzustände, 5 Getränke × 5 Vorratsarten, Tagesüberblick, Fehlerlogik) profitiert von Typsicherheit und Komponentenstruktur; der einzige Vorteil von Vanilla (Nähe zum Original) ist bewusst gewollter Kontrast, kein Muss. Der Nutzer selbst schreibt den React-Code nicht mit, testet aber die laufende Anwendung im Browser.
+
+## Runde 9 – UI-Feinschliff nach erster lauffähiger Version
+
+Nachträglich dokumentiert (Umsetzung erfolgte direkt im Code, ohne vorherige Options-Diskussion – wird hier für die Nachvollziehbarkeit ergänzt).
+
+### 1. Getränke-Vorschaubild
+
+**Frage:** Wie lässt sich das gewählte Getränk in der Auswahl visuell erkennbar machen, statt nur als Textname in der Buttonleiste?
+
+**Entscheidung:** Neue Komponente `DrinkArt` – je Getränk ein PNG-Bild aus `showcase/src/assets/drinks/` (espresso, americano, macchiato, cappuccino, latte). Wird in `DrinkSelector` rechts neben Größe/Extras als eigene Vorschau-Spalte mit Getränkename angezeigt; auf schmalen Bildschirmen (< 520px) rutscht die Vorschau unter die Auswahl. Ebenso als PNG umgesetzt: das Logo in der `StatusBar` (`barista-automat-logo.png`), der Kaffeebohnen-Hintergrund im Kopfbereich (`coffee-beans-header.jpg`) sowie die Sirup-/Zucker-Icons im `InventoryPanel` (`sirup.png`, `zucker.png`).
+
+**Begründung:** Rein visuelle Verbesserung der Wiedererkennbarkeit, keine Auswirkung auf Logik/Zustände. Statt Inline-SVG wurden fertige PNG-Bilddateien verwendet (einfacher umzusetzen, realistischere Optik); dafür sind Farben dieser Elemente nicht mehr über CSS-Variablen themefähig, sondern fix im Bildmaterial.
+
+### 2. Extras als Buttons statt Checkboxen
+
+**Frage:** Wie sollen die optionalen Extras (Sirup/Zucker) in der Oberfläche auswählbar sein?
+
+**Entscheidung:** Umstellung von Checkbox+Label auf Toggle-Buttons (wie bei der Größenauswahl), mit `aria-pressed` und direkter Anzeige des Aufpreises (`+0,50 €`) auf dem Button selbst.
+
+**Begründung:** Einheitlicheres Bedienkonzept (Größe und Extras sehen/funktionieren gleich), Aufpreis ist ohne Nachschlagen sofort sichtbar, größere Klickfläche als bei einer kleinen Checkbox.
+
+### 3. Optisches Redesign StatusBar und Hintergrund
+
+**Entscheidung:** Kopfbereich (`StatusBar`) erhält einen dekorativen Verlaufshintergrund mit Kaffeebohnen-Muster (SVG-Pattern) statt einfarbiger Fläche, größere Titel-/Symbolschrift, zentriertes Layout. Seitenhintergrund (`index.css`) erhält einen leichten Farbverlauf (`--bg` → neue Variable `--bg-2`) statt Flächenfarbe, in Hell- und Dunkelmodus jeweils eigene Werte.
+
+**Begründung:** Rein gestalterische Auflockerung des ersten lauffähigen Standes, keine funktionale Änderung; Farben weiterhin über CSS-Variablen gepflegt, damit Light/Dark-Mode konsistent bleiben.
+
+**Hinweis:** Alle drei Punkte sind reine UI-Änderungen ohne Auswirkung auf Zustandsmaschine, Preisberechnung oder Vorratslogik – bestehende Testfälle aus Runde 1–7 bleiben unverändert gültig.
