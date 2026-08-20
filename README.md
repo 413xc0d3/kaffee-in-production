@@ -21,6 +21,10 @@ haben. Die App selbst ist bewusst überschaubar geblieben. Der Punkt war nicht "
 Software", sondern der Umgang mit Anforderungen, Entscheidungen und KI-Zusammenarbeit an einem
 kleinen, gut überschaubaren Beispiel.
 
+Eine frühere, kleinere Erweiterung derselben Unterrichtsreihe (Vanilla JS, Vorratsverwaltung als
+Eigenleistung) liegt in meinem [`fiae-learning-portfolio`](https://github.com/413xc0d3/fiae-learning-portfolio).
+Dieses Projekt hier ist die deutlich weitergeführte Fassung davon.
+
 ## Mein Vorgehen
 
 Bevor der eigentliche Dialog mit Claude begann, habe ich meine Unterrichtsunterlagen zu
