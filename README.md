@@ -37,9 +37,44 @@ neue Entscheidungsrunde zurück in den Prozess. Nachlesbar in
 
 ## Was ich dabei gelernt habe
 
-> *[Platzhalter: hier ergänze ich in eigenen Worten, was mir beim Arbeiten mit Claude
-> aufgefallen ist: was überraschend war, was schwierig war, was ich beim nächsten Projekt
-> anders machen würde.]*
+Die Entscheidung, in diesem Projekt bewusst mit mir bis dahin unbekannten Sprachen zu arbeiten,
+war kein Zufall. Ich wollte herausfinden, wie weit ich komme, ohne den erzeugten Code wirklich zu
+verstehen, und wo die Grenzen dieses Vorgehens liegen, auch bei sorgfältiger Vorarbeit in
+Anforderungen und Entscheidungen.
+
+Bei der Entwicklung dieses Projekts habe ich gemerkt, dass mir aktuell besonders die
+**Erarbeitung und Strukturierung der Anforderungen** liegt. Zu klären, was eine Lösung leisten
+soll, welche Abläufe notwendig sind und wie sich diese Anforderungen präzise beschreiben lassen,
+fällt mir derzeit deutlich leichter als die eigentliche Programmierung. Ein Beispiel dafür ist der
+Fehler-Zustand des Automaten: In der ersten Umsetzung sperrte ein fehlender Vorrat die gesamte
+Maschine für alle Getränke. Beim Testen fiel mir auf, dass zum Beispiel der Americano auch ohne
+Milch zubereitet werden kann und trotzdem gesperrt war. Diese Beobachtung in eine klare
+Anforderung zu übersetzen, die Sperre pro Getränk statt maschinenweit zu regeln, war eine leichte
+Aufgabe verglichen mit der codetechnischen Umsetzung in einer mir bisher nicht geläufigen Sprache.
+
+Ein funktionsfähiges Ergebnis bedeutet nicht, dass ich auch den zugrunde liegenden Code verstanden
+habe. KI kann Code erzeugen, den ich auf meinem aktuellen Kenntnisstand noch nicht selbstständig
+hätte schreiben können. Dadurch besteht die Gefahr, die eigenen Programmierkenntnisse zu
+überschätzen. Der Unterschied zwischen dem, was ich **mit Unterstützung umsetzen kann**, und dem,
+was ich bereits **selbstständig verstehe und entwickeln könnte**, ist mir durch das Projekt
+deutlich bewusster geworden.
+
+Besonders gut funktioniert für mich ein **schrittweiser, dialogischer Entwicklungsprozess**. Statt
+eine vollständige Lösung einmalig beschreiben und generieren zu lassen, arbeite ich Anforderungen
+und Änderungen nacheinander heraus. Der Austausch mit der KI ähnelt dabei einem Dialog mit einem
+Kommilitonen und Dozenten zugleich: Lösungswege werden besprochen, Rückfragen entstehen und
+Vorschläge werden angepasst oder verworfen.
+
+Meine bisherige Erfahrung ist, dass KI die technische Einstiegshürde senkt und es ermöglicht,
+schneller funktionsfähige Software zu entwickeln. Für mich rücken dabei besonders das **Verstehen
+und Strukturieren von Anforderungen, ihre präzise sprachliche Beschreibung sowie die Beurteilung
+vorgeschlagener Lösungen** in den Vordergrund. Das setzt gleichzeitig voraus, dass die zugrunde
+liegenden fachlichen und programmiertechnischen Grundlagen ausreichend verstanden sind, um
+Anforderungen präzise formulieren und vorgeschlagene Lösungen sinnvoll beurteilen zu können.
+
+Für meine weitere Entwicklung bedeutet das, KI bewusst als Unterstützung einzusetzen und
+gleichzeitig darauf zu achten, dass sich die Programmiergrundlagen durch praktische Anwendung
+festigen und das eigenständige Schreiben und Entwickeln von Code nicht zu kurz kommt.
 
 ## Ehrlich gesagt: wer hat was gemacht?
 
