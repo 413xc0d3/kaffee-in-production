@@ -1,6 +1,7 @@
 import { DRINKS, getDrink } from '../data/drinks';
 import { EXTRA_LABEL, EXTRA_PRICE_CENTS } from '../data/config';
 import { calculatePriceCents, formatCents } from '../logic/pricing';
+import { istDrinkDurchFehlendenVorratGesperrt } from '../logic/recipe';
 import type { BaristaAction, BaristaState } from '../logic/baristaReducer';
 import type { ExtraType, Size } from '../types';
 import { BESTELLUNG_GESPERRT_HINWEIS } from '../utils/statusMeta';
@@ -23,9 +24,12 @@ const EXTRA_IMAGE: Record<ExtraType, string> = {
 };
 
 export function DrinkSelector({ state, dispatch }: Props) {
-  const gesperrt = state.status !== 'bereit';
+  const vollGesperrt = state.status !== 'bereit' && state.status !== 'fehler';
   const { drink: drinkId, size, extras } = state.selection;
   const drink = getDrink(drinkId);
+  const drinkGesperrt =
+    state.status === 'fehler' && istDrinkDurchFehlendenVorratGesperrt(drink, state.fehlerUrsachen);
+  const gesperrt = vollGesperrt || drinkGesperrt;
   const previewCents = calculatePriceCents(drink, size, extras);
 
   return (
@@ -37,17 +41,21 @@ export function DrinkSelector({ state, dispatch }: Props) {
       )}
 
       <div className="drink-selector__grid">
-        {DRINKS.map((d) => (
-          <button
-            key={d.id}
-            type="button"
-            disabled={gesperrt}
-            className={`drink-selector__drink${d.id === drinkId ? ' drink-selector__drink--aktiv' : ''}`}
-            onClick={() => dispatch({ type: 'WAEHLE_GETRAENK', drink: d.id })}
-          >
-            {d.name}
-          </button>
-        ))}
+        {DRINKS.map((d) => {
+          const dGesperrt =
+            vollGesperrt || (state.status === 'fehler' && istDrinkDurchFehlendenVorratGesperrt(d, state.fehlerUrsachen));
+          return (
+            <button
+              key={d.id}
+              type="button"
+              disabled={dGesperrt}
+              className={`drink-selector__drink${d.id === drinkId ? ' drink-selector__drink--aktiv' : ''}`}
+              onClick={() => dispatch({ type: 'WAEHLE_GETRAENK', drink: d.id })}
+            >
+              {d.name}
+            </button>
+          );
+        })}
       </div>
 
       <div className="drink-selector__mitte">

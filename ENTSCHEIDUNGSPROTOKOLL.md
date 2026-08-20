@@ -453,3 +453,15 @@ Wie Runde 9 nachträglich dokumentiert: Umsetzung erfolgte direkt im Code anhand
 **Begründung:** Räumliche Nähe zur Bestellung, an der sie inhaltlich hängt, statt als separater Block weiter unten auf der Seite.
 
 **Hinweis:** Alle fünf Punkte sind reine UI-/Layout-Änderungen ohne Auswirkung auf Zustandsmaschine, Preisberechnung oder Vorratslogik – bestehende Testfälle aus Runde 1–7 bleiben unverändert gültig.
+
+## Runde 11 – Sperre im Fehler-Zustand: maschinenweit vs. pro Getränk
+
+Ausgelöst durch den systematischen Testdurchlauf vom 20.08.2026 (siehe `showcase/GRENZFAELLE_UND_TESTIDEEN.md`): Der ursprünglich in Runde 2/3 formulierte Testfall "Milchvorrat leer → Americano weiterhin bestellbar" widersprach der bis dahin tatsächlichen Umsetzung, in der die Bestellbuttons im Fehler-Zustand pauschal für alle Getränke gesperrt waren (Konsequenz aus Runde 4.1 + der nachträglich in Runde-9/10-Umsetzung ergänzten Fehler-Sperre).
+
+**Frage:** Soll die Sperre im Fehler-Zustand maschinenweit gelten (einfacher) oder pro Getränk, abhängig davon, ob das jeweilige Getränk die aufgebrauchte Zutat tatsächlich benötigt (realistischer)?
+
+**Entscheidung:** Sperre pro Getränk. Americano bleibt bei leerer Milch weiterhin bestellbar; Getränke, die die aufgebrauchte(n) Zutat(en) benötigen, bleiben gesperrt. Der Fehler-Zustand (Statusanzeige, Nachfüll-Notwendigkeit) bleibt bestehen, bis die auslösende(n) Zutat(en) nachgefüllt wurden – auch wenn zwischenzeitlich ein nicht betroffenes Getränk erfolgreich zubereitet wird.
+
+**Begründung:** Realistischeres Automatenverhalten, entspricht der ursprünglichen Testfall-Erwartung aus der Anforderungsphase.
+
+**Umsetzung:** `showcase/src/logic/recipe.ts` (neue Funktion `istDrinkDurchFehlendenVorratGesperrt`), `showcase/src/logic/baristaReducer.ts` (Getränk-/Größen-/Extra-Auswahl und Bestellung im Fehler-Zustand erlaubt, sofern das gewählte Getränk nicht betroffen ist; mehrere gleichzeitige Fehlerursachen werden zusammengeführt statt überschrieben; bereits bekannte Ursachen bleiben nach einer erfolgreichen Zwischenbestellung erhalten, bis nachgefüllt wird), `showcase/src/components/DrinkSelector.tsx` (Getränke-Buttons einzeln statt pauschal gesperrt). Live im Browser verifiziert.

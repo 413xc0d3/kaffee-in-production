@@ -1,6 +1,6 @@
 import { DRINKS, getDrink } from '../data/drinks';
 import { EXTRA_LABEL, INVENTORY_LABEL, INVENTORY_MAX } from '../data/config';
-import { getScaledExtraAmount, getScaledRecipe } from './recipe';
+import { getScaledExtraAmount, getScaledRecipe, istDrinkDurchFehlendenVorratGesperrt } from './recipe';
 import { calculatePriceCents } from './pricing';
 import type {
   ActiveOrder,
@@ -94,17 +94,17 @@ export function baristaReducer(state: BaristaState, action: BaristaAction): Bari
     }
 
     case 'WAEHLE_GETRAENK': {
-      if (state.status !== 'bereit') return state;
+      if (state.status !== 'bereit' && state.status !== 'fehler') return state;
       return { ...state, selection: { ...state.selection, drink: action.drink } };
     }
 
     case 'WAEHLE_GROESSE': {
-      if (state.status !== 'bereit') return state;
+      if (state.status !== 'bereit' && state.status !== 'fehler') return state;
       return { ...state, selection: { ...state.selection, size: action.size } };
     }
 
     case 'TOGGLE_EXTRA': {
-      if (state.status !== 'bereit') return state;
+      if (state.status !== 'bereit' && state.status !== 'fehler') return state;
       const extras = state.selection.extras.includes(action.extra)
         ? state.selection.extras.filter((e) => e !== action.extra)
         : [...state.selection.extras, action.extra];
@@ -112,11 +112,15 @@ export function baristaReducer(state: BaristaState, action: BaristaAction): Bari
     }
 
     case 'BESTELLEN': {
-      if (state.status !== 'bereit') return state;
+      if (state.status !== 'bereit' && state.status !== 'fehler') return state;
 
       const drink = getDrink(state.selection.drink);
       const size = state.selection.size;
       const scaled = getScaledRecipe(drink, size);
+
+      if (state.status === 'fehler' && istDrinkDurchFehlendenVorratGesperrt(drink, state.fehlerUrsachen)) {
+        return state;
+      }
 
       const basiszutaten: (keyof typeof scaled)[] = ['wasser', 'kaffee', 'milch'];
       const fehlendeZutaten = basiszutaten.filter((typ) => state.inventory[typ] < scaled[typ]);
@@ -128,7 +132,7 @@ export function baristaReducer(state: BaristaState, action: BaristaAction): Bari
         return {
           ...state,
           status: 'fehler',
-          fehlerUrsachen: fehlendeZutaten,
+          fehlerUrsachen: Array.from(new Set([...state.fehlerUrsachen, ...fehlendeZutaten])),
           ...mitHinweis(state, text, 'fehler'),
         };
       }
@@ -195,21 +199,31 @@ export function baristaReducer(state: BaristaState, action: BaristaAction): Bari
 
     case 'ZUBEREITUNG_FERTIG': {
       if (state.status !== 'zubereitung') return state;
-      if (state.pendingFehlerUrsachen.length > 0) {
-        const text = `Vorrat an ${state.pendingFehlerUrsachen
-          .map((t) => INVENTORY_LABEL[t])
-          .join(', ')} aufgebraucht.`;
+      // Bereits bekannte Fehlerursachen (z. B. aus einer vorherigen fehlgeschlagenen Bestellung eines
+      // anderen Getränks) bleiben bestehen, bis explizit nachgefüllt wird (Runde 4.2) – ein dazwischen
+      // erfolgreich zubereitetes, nicht betroffenes Getränk darf sie nicht stillschweigend löschen.
+      const alleUrsachen = Array.from(new Set([...state.fehlerUrsachen, ...state.pendingFehlerUrsachen]));
+      if (alleUrsachen.length > 0) {
+        const neueUrsachen = state.pendingFehlerUrsachen.filter((t) => !state.fehlerUrsachen.includes(t));
+        const hinweisUpdate =
+          neueUrsachen.length > 0
+            ? mitHinweis(
+                state,
+                `Vorrat an ${neueUrsachen.map((t) => INVENTORY_LABEL[t]).join(', ')} aufgebraucht.`,
+                'fehler',
+              )
+            : { hinweise: state.hinweise, nextHinweisId: state.nextHinweisId };
         return {
           ...state,
           status: 'fehler',
           progress: 0,
           activeOrder: null,
-          fehlerUrsachen: state.pendingFehlerUrsachen,
+          fehlerUrsachen: alleUrsachen,
           pendingFehlerUrsachen: [],
-          ...mitHinweis(state, text, 'fehler'),
+          ...hinweisUpdate,
         };
       }
-      return { ...state, status: 'bereit', progress: 0, activeOrder: null };
+      return { ...state, status: 'bereit', progress: 0, activeOrder: null, fehlerUrsachen: [] };
     }
 
     case 'NACHFUELLEN': {
